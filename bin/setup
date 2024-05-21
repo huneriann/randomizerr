@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+function install_clipboard_dependency() {
+  if !(command -v xsel) >/dev/null 2>&1; then
+    echo "Xsel was not found on the system..."
+
+    if !(command -v xclip) >/dev/null 2>&1; then
+      echo "Xclip also not found, installing Xsell..."
+      sudo apt update -y -qq
+      sudo apt install xsel -y
+
+    else
+      echo "but Xclip was"
+    fi
+
+  else
+    echo "Xsel found on the system"
+  fi
+}
+
+install_clipboard_dependency
+bundle install
